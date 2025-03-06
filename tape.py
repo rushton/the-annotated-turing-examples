@@ -27,6 +27,9 @@ class Tape:
     def read(self):
         return self.tape[self.position]
 
+    def erase(self):
+        self.tape[self.position] = ""
+
     def is_empty(self):
         return self.tape[self.position] == " "
 

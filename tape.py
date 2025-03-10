@@ -1,3 +1,6 @@
+import sys
+
+
 class TapeRanOutException(Exception):
     pass
 
@@ -56,12 +59,19 @@ class Tape:
         print(self)
 
     def __str__(self):
-        return (
-            "| "
-            + " | ".join(self.tape)
-            + " |"
-            + "\n"
-            + (" " * 4 * self.position)
-            + "  "
-            + "^"
-        )
+        s = self._get_selected_char(1) + " "
+        for idx, itm in enumerate(self.tape):
+            surround = self._get_selected_char(idx)
+            s+= itm
+            if (idx+1) % 25 == 0:
+                s += '\n'
+            else:
+                s += ' '
+            s += surround + " "
+
+        return s
+    def _get_selected_char(self, idx):
+        if self.position == idx or self.position + 1 == idx:
+            return '*'
+        else:
+            return '|'

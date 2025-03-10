@@ -9,9 +9,10 @@ f  --  Any,None       --  R,R|P0,L,L               --  f,D
 """
 
 from tape import Tape, TapeRanOutException
+import sys
 
 def runs_of_zeros():
-    tape = Tape(max_length=100)
+    tape = Tape(max_length=500)
     try:
         begin(tape)
     except TapeRanOutException:
@@ -101,4 +102,5 @@ def main():
     runs_of_zeros()
 
 if __name__ == '__main__':
+    sys.setrecursionlimit(sys.getrecursionlimit() * 20)
     main()
